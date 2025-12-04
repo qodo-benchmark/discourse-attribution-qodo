@@ -5,7 +5,7 @@ module DiscourseAi
     class Designer < Persona
       def tools
         # Only include image tools if custom image generation tools are configured
-        if Tools::Tool.available_custom_image_tools.present?
+        if Tools::Tool.available_custom_image_tools.any?
           [Tools::CreateImage, Tools::EditImage]
         else
           []

@@ -13,7 +13,7 @@ module DiscourseAi
         ]
 
         # Only include Tools::Image if custom image generation tools are configured
-        base_tools << Tools::Image if Tools::Tool.available_custom_image_tools.present?
+        base_tools << Tools::Image if Tools::Tool.available_custom_image_tools.any?
 
         base_tools
       end

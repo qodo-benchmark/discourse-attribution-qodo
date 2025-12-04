@@ -137,7 +137,7 @@ module DiscourseAi
           tools << Tools::ListTags if SiteSetting.tagging_enabled
 
           # Image generation tools - use custom UI-configured tools
-          if Tools::Tool.available_custom_image_tools.present?
+          if Tools::Tool.available_custom_image_tools.any?
             tools << Tools::Image
             tools << Tools::CreateImage
             tools << Tools::EditImage

