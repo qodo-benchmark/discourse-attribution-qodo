@@ -18,7 +18,7 @@ class ThemeSiteSetting < ActiveRecord::Base
         UploadReference.ensure_exist!(upload_ids: [self.value], target: self)
       elsif self.data_type == SiteSettings::TypeSupervisor.types[:objects]
         upload_ids = extract_upload_ids_from_objects_value
-        UploadReference.ensure_exist!(upload_ids: upload_ids, target: self) if upload_ids.any?
+        UploadReference.ensure_exist!(upload_ids: upload_ids, target: self)
       end
     end
   end

@@ -388,7 +388,7 @@ class SiteSetting < ActiveRecord::Base
   def extract_upload_ids_from_objects_value
     return [] if self.value.blank?
 
-    type_hash = SiteSetting.type_supervisor.type_hash(self.name)
+    type_hash = SiteSetting.type_supervisor.type_hash(self.name.to_sym)
     return [] unless type_hash[:schema]&.dig(:properties)
 
     begin

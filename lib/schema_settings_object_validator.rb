@@ -131,7 +131,7 @@ class SchemaSettingsObjectValidator
         if value.is_a?(String)
           upload = Upload.get_from_url(value)
           if upload
-            @object[property_name] = upload.id
+            @object[property_name.to_s] = upload.id
             true
           else
             false
