@@ -78,7 +78,7 @@ export default async function quoteImage(slideElement, slideData) {
 
     if (composer.model?.viewDraft) {
       const model = composer.model;
-      model.reply = model.reply + "\n" + quote;
+      model.set("reply", model.get("reply") + "\n" + quote);
       composer.openIfDraft();
       return true;
     }

@@ -287,9 +287,9 @@ export default async function lightbox(
       data.thumbCropped = true;
 
       data.src = data.src || el.getAttribute("data-large-src");
-      data.origSrc = imgEl.getAttribute("data-orig-src");
-      data.title = el.title || imgEl.alt || imgEl.title;
-      data.base62SHA1 = imgEl.getAttribute("data-base62-sha1");
+      data.origSrc = imgEl?.getAttribute("data-orig-src");
+      data.title = el.title || imgEl?.alt || imgEl?.title;
+      data.base62SHA1 = imgEl?.getAttribute("data-base62-sha1");
       data.details = imgInfo;
       data.w = data.width = width;
       data.h = data.height = height;

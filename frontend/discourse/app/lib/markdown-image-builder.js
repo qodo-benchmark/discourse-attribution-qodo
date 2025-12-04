@@ -10,7 +10,7 @@ export function sanitizeAlt(text, options = {}) {
     return fallback;
   }
 
-  return trimmed.replace(/\|/g, "&#124;").replace(/([\\\[\]])/g, "\\$1");
+  return trimmed.replace(/([\\\[\]])/g, "\\$1").replace(/\|/g, "&#124;");
 }
 
 export function buildImageMarkdown(imageData) {

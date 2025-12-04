@@ -816,7 +816,7 @@ export default class TopicController extends Controller {
         opts.draftSequence = draftData.draft_sequence;
 
         if (quotedText) {
-          opts.reply = data.reply + "\n" + quotedText;
+          opts.reply = (data.reply || "") + "\n" + quotedText;
         } else {
           opts.reply = data.reply;
         }
