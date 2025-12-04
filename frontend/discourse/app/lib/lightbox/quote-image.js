@@ -19,7 +19,7 @@ function buildImageMarkdown(slideElement, slideData) {
 
   // Check for base62 SHA1 to use short upload:// URL format (same as to-markdown.js)
   if (slideData.base62SHA1) {
-    const extension = extensionFromUrl(slideData.src);
+    const extension = extensionFromUrl(slideData.origSrc);
     src = `upload://${slideData.base62SHA1}`;
     if (extension) {
       src += `.${extension}`;

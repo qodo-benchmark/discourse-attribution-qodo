@@ -33,7 +33,7 @@ export default async function lightbox(
   const imageClickNavigation = caps.touch;
   const canDownload =
     !siteSettings.prevent_anons_from_downloading_files || !!currentUser;
-  const canQuoteImage = !!currentUser;
+  const canQuoteImage = currentUser;
 
   if (siteSettings.experimental_lightbox) {
     const { default: PhotoSwipeLightbox } = await import("photoswipe/lightbox");
