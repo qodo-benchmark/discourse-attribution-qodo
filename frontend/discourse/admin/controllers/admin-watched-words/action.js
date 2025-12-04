@@ -50,7 +50,7 @@ export default class AdminWatchedWordsActionController extends Controller {
 
       try {
         // eslint-disable-next-line no-new
-        new RegExp(regexp, "u");
+        new RegExp(regexp, "gui");
       } catch (e) {
         const key = `${id}:${word}:${e.message}`;
         if (!seen.has(key)) {

