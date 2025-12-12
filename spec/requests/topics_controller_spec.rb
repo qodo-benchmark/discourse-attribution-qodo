@@ -65,9 +65,17 @@ RSpec.describe TopicsController do
       expect(response.status).to eq(200)
       expect(response.body).to include("Topic title from outlet: #{topic.title}")
 
+      # Verify that the template cache is working correctly
+      expect(ApplicationHelper::PLUGIN_OUTLET_TEMPLATE_CACHE.size).to eq(1)
+      cache_keys = ApplicationHelper::PLUGIN_OUTLET_TEMPLATE_CACHE.keys
+      expect(cache_keys.first.first).to eq(template_file.path)
+
       get "/t/#{another_topic.slug}/#{another_topic.id}"
       expect(response.status).to eq(200)
       expect(response.body).to include("Topic title from outlet: #{another_topic.title}")
+
+      # Verify that the cache is reused and not duplicated
+      expect(ApplicationHelper::PLUGIN_OUTLET_TEMPLATE_CACHE.size).to eq(1)
     end
   end
 
