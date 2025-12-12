@@ -46,20 +46,26 @@ module("Integration | Component | BulkSelectTopicsDropdown", function (hooks) {
   setupRenderingTest(hooks);
 
   test("actions all topics can perform", async function (assert) {
+    // Set the current user as admin so they have permissions
     this.currentUser.admin = true;
+    // Create a bulk select helper with all test topics
     this.bulkSelectHelper = createBulkSelectHelper(this);
 
+    // Render the BulkSelectTopicsDropdown component
     await render(
       <template>
         <BulkSelectTopicsDropdown @bulkSelectHelper={{this.bulkSelectHelper}} />
       </template>
     );
 
+    // Click on the dropdown trigger to open the menu
     await click(".bulk-select-topics-dropdown-trigger");
+    // Assert that there are exactly 7 dropdown menu items
     assert
       .dom(".fk-d-menu__inner-content .dropdown-menu__item")
       .exists({ count: 7 });
 
+    // Check that each expected action exists in the dropdown menu
     [
       "update-notifications",
       "reset-bump-dates",
@@ -69,6 +75,7 @@ module("Integration | Component | BulkSelectTopicsDropdown", function (hooks) {
       "remove-tags",
       "delete-topics",
     ].forEach((action) => {
+      // Verify that the action element exists in the menu
       assert
         .dom(`.fk-d-menu__inner-content .dropdown-menu__item .${action}`)
         .exists();
