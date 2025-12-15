@@ -964,6 +964,12 @@ describe PostRevisor do
         Topic.expects(:reset_highest).never
 
         post_revisor.revise!(admin, user_id: new_owner.id)
+
+        # Verify that highest_post_number is not recalculated
+        topic.reload
+        expect(topic.highest_post_number).to eq(
+          topic.posts.where("post_number > 0 AND NOT hidden").maximum(:post_number)
+        )
       end
 
       it "calls Topic.reset_highest when user_id and other fields are changed" do
@@ -971,6 +977,14 @@ describe PostRevisor do
         Topic.expects(:reset_highest).once
 
         post_revisor.revise!(admin, user_id: new_owner.id, raw: "updated body")
+
+        # Verify that Topic correctly updates its cached highest_post_number value
+        topic.reload
+        expected_highest = DB.query_single(
+          "SELECT MAX(post_number) FROM posts WHERE topic_id = ? AND post_number > 0 AND NOT hidden",
+          topic.id
+        ).first
+        expect(topic.highest_post_number).to eq(expected_highest)
       end
 
       it "does not increment post_edits_count when system user changes ownership" do
