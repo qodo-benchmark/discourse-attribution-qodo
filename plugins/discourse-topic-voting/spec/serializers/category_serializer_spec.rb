@@ -13,7 +13,7 @@ describe CategorySerializer do
 
   it "returns enable_topic_voting when voting enabled" do
     SiteSetting.topic_voting_enabled = true
-    category.custom_fields["enable_topic_voting"] = "true"
+    category.custom_fields["enable_topic_voting"] = true
     category.save_custom_fields
 
     json = CategorySerializer.new(category, root: false).as_json
