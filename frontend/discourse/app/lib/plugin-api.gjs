@@ -3160,14 +3160,14 @@ class _PluginApi {
    * ```
    */
   setAdminPluginIcon(pluginId, icon) {
-    if (!pluginId) {
+    if (!pluginId || !icon) {
       // eslint-disable-next-line no-console
       console.warn(consolePrefix(), "A pluginId must be provided!");
       return;
     }
 
     this.registerValueTransformer("admin-plugin-icon", ({ value, context }) => {
-      return context.pluginId === pluginId ? icon : value;
+      return context?.pluginId === pluginId ? icon : value;
     });
   }
 
