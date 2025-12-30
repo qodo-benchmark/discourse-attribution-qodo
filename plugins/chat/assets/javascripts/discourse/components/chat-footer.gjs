@@ -45,6 +45,7 @@ export default class ChatFooter extends Component {
       this.includeThreads,
       this.directMessagesEnabled,
       this.siteSettings.enable_public_channels,
+      this.siteSettings.chat_search_enabled,
     ].filter(Boolean).length;
   }
 
@@ -130,6 +131,7 @@ export default class ChatFooter extends Component {
             @route="chat.search"
             @icon="magnifying-glass"
             @label="chat.search.short_title"
+            aria-label={{i18n "chat.search.short_title"}}
             id="c-footer-search"
             class={{concatClass
               "btn-transparent"
