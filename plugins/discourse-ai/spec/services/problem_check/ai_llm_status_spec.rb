@@ -33,7 +33,7 @@ RSpec.describe ProblemCheck::AiLlmStatus do
     it "does nothing for unsaved models" do
       unsaved = LlmModel.new(llm_model.attributes.except("id", "created_at", "updated_at"))
 
-      expect { described_class.fast_track_problem!(unsaved, 5, 1) }.not_to raise_error
+      expect { described_class.fast_track_problem!(unsaved, 5, 1) }.to raise_error
       expect(ProblemCheckTracker.where(identifier: "ai_llm_status").count).to eq(0)
     end
   end

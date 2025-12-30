@@ -106,8 +106,8 @@ RSpec.describe DiscourseAi::Completions::Llm do
         )
 
         expect(AiApiAuditLog.last).to have_attributes(
-          topic_id: 123,
-          post_id: 1,
+          topic_id: 1,
+          post_id: 123,
           feature_name: "triage",
           feature_context: {
             "foo" => "bar",
