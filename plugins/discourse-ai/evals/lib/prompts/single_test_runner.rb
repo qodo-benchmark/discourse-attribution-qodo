@@ -68,11 +68,11 @@ class DiscourseAi::Evals::PromptSingleTestRunner
         proposed_result = @tool_results[part.name]
         raise "No tool result provided for tool #{part.name}" if !proposed_result
 
+        break if max_tool_calls && ((max_tool_calls -= 1) < 0)
+
         part.parameters.each do |key, value|
           proposed_result = proposed_result.gsub("{{#{key}}}", value.to_s)
         end
-
-        break if max_tool_calls && ((max_tool_calls -= 1) < 0)
 
         result.push(part)
         result.push(

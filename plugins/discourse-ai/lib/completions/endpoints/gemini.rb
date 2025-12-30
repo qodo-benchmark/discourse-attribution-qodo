@@ -212,7 +212,7 @@ module DiscourseAi
             end
             # we could get a nil here cause part can be nil
             # interface expects an array
-          end || []
+          end&.compact || []
         end
 
         def decode_chunk(chunk)

