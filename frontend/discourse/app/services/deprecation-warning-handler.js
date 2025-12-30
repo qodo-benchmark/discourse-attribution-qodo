@@ -39,12 +39,12 @@ export default class DeprecationWarningHandler extends Service {
 
   @bind
   handle(message, opts) {
-    if (DeprecationWorkflow.shouldSilence(opts.id)) {
+    const source = opts.source || identifySource();
+    if (source?.type === "browser-extension") {
       return;
     }
 
-    const source = opts.source || identifySource();
-    if (source?.type === "browser-extension") {
+    if (DeprecationWorkflow.shouldSilence(opts.id)) {
       return;
     }
 

