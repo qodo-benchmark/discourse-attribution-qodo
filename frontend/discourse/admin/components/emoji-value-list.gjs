@@ -133,6 +133,7 @@ export default class EmojiValueList extends Component {
       return;
     }
     set(item, "value", newValue);
+    set(item, "emojiUrl", emojiUrlFor(newValue));
 
     this.#saveValues(updateCollection);
   }

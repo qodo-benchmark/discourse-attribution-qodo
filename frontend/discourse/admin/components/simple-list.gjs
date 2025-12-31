@@ -50,7 +50,7 @@ export default class SimpleList extends Component {
       return;
     }
 
-    this.newValue = null;
+    this.newValue = "";
     this.collection.push(value);
     this.args.onChange?.(this.collection);
   }

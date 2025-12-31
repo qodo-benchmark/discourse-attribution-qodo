@@ -66,7 +66,7 @@ export default class ValueList extends Component {
       return;
     }
 
-    this.set("newValue", null);
+    this.set("newValue", "");
     this._addValue(newValue);
   }
 
