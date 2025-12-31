@@ -3625,7 +3625,7 @@ pl_PL:
           many: "Usuń wpisy"
           other: "Usuń wpisy"
         delete_posts_confirmation:
-          one: "Czy na pewno chcesz usunąć %{count} wpis?"
+          one: "Czy na pewno chcesz usunąć wpis?"
           few: "Czy na pewno chcesz usunąć %{count} wpisy?"
           many: "Czy na pewno chcesz usunąć %{count} wpisów?"
           other: "Czy na pewno chcesz usunąć %{count} wpisów?"

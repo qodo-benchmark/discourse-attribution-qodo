@@ -61,7 +61,7 @@ pl_PL:
       cancel_reply: "Anuluj odpowiedź"
       chat_channels: "Kanały"
       starred: "Wyróżnione"
-      starred_channels: "Wyróżnione kanały"
+      starred_channel: "Wyróżnione kanały"
       starred_channels_empty: "Nie wyróżniono jeszcze żadnego kanału. Wyróżnij kanały, aby je tu zobaczyć i mieć do nich szybki dostęp."
       browse_all_channels: "Przeglądaj wszystkie kanały"
       see_in: "Zobacz w"
