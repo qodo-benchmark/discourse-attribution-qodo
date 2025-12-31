@@ -40,6 +40,8 @@ export default class UserActivityReactions extends Controller {
     } else {
       this.beforeReactionUserId = this.#getLastIdFrom(reactionUsers);
     }
+
+    this.canLoadMore = reactionUsers.length > 0;
   }
 
   @action

