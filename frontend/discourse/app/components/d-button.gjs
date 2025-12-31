@@ -98,6 +98,11 @@ export default class DButton extends Component {
     }
   }
 
+  // Helper to check if action should be debounced
+  shouldDebounceAction() {
+    return this.args.debounce && !this.capabilities?.isIOS;
+  }
+
   _triggerAction(event) {
     const { action: actionVal, route, routeModels } = this.args;
     const isIOS = this.capabilities?.isIOS;
