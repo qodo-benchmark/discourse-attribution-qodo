@@ -35,8 +35,8 @@ export default class DTooltipInstance extends FloatKitInstance {
     super(...arguments);
 
     setOwner(this, owner);
-    this.options = { ...TOOLTIP.options, ...options };
     this.portalOutletOverrideElement = options.portalOutletElement;
+    this.options = { ...TOOLTIP.options, ...options };
   }
 
   get trigger() {
