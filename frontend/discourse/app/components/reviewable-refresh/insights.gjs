@@ -107,10 +107,12 @@ export default class ReviewableInsights extends Component {
         count: user.rejected_posts_count,
       }),
     ];
-    insights.push({
-      label: i18n("review.insights.moderation_history.label"),
-      description: moderationActions.join(", "),
-    });
+    if (user) {
+      insights.push({
+        label: i18n("review.insights.moderation_history.label"),
+        description: moderationActions.join(", "),
+      });
+    }
 
     return insights;
   }

