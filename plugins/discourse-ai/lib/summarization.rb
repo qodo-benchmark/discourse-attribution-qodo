@@ -30,7 +30,7 @@ module DiscourseAi
         end
 
         persona_klass = ai_persona.class_instance
-        llm_model ||= find_summarization_model(persona_klass)
+        llm_model = llm_model || find_summarization_model(persona_klass)
         return nil if llm_model.blank?
 
         DiscourseAi::Summarization::FoldContent.new(

