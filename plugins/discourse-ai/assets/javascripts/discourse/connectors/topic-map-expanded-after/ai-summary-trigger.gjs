@@ -50,7 +50,7 @@ export default class AiSummaryTrigger extends Component {
     if (!this.creditCheckComplete) {
       return false;
     }
-    return this.creditStatus?.hard_limit_reached === true;
+    return this.creditStatus?.credit_status?.hard_limit_reached === true;
   }
 
   @action
@@ -59,8 +59,8 @@ export default class AiSummaryTrigger extends Component {
     this.creditCheckComplete = false;
 
     try {
-      this.creditStatus =
-        await this.aiCredits.getFeatureCreditStatus("topic_summaries");
+      const result = await this.aiCredits.checkFeatureCredits(["topic_summaries"]);
+      this.creditStatus = result["topic_summaries"];
     } catch {
       this.creditStatus = null;
     } finally {
