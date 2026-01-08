@@ -8,7 +8,6 @@ import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { isEmpty } from "@ember/utils";
 import { modifier } from "ember-modifier";
-import $ from "jquery";
 import DButton from "discourse/components/d-button";
 import PickFilesButton from "discourse/components/pick-files-button";
 import concatClass from "discourse/helpers/concat-class";
@@ -60,12 +59,7 @@ export default class UppyImageUploader extends Component {
 
   willDestroy() {
     super.willDestroy(...arguments);
-
-    if (this.siteSettings.experimental_lightbox) {
-      window.pswp?.close();
-    } else {
-      $.magnificPopup?.instance.close();
-    }
+    window.pswp?.close();
   }
 
   get disabled() {
@@ -146,8 +140,7 @@ export default class UppyImageUploader extends Component {
   }
 
   @action
-  toggleLightbox() {
-    // Only allow lightbox for images, not videos
+  async toggleLightbox() {
     if (this.isVideoFile) {
       return;
     }
@@ -158,12 +151,8 @@ export default class UppyImageUploader extends Component {
       return;
     }
 
-    if (this.siteSettings.experimental_lightbox) {
-      lightbox(lightboxImage, this.siteSettings);
-      lightboxImage.click();
-    } else {
-      $(lightboxImage).magnificPopup("open");
-    }
+    await lightbox(lightboxImage);
+    lightboxImage.click();
   }
 
   @action
