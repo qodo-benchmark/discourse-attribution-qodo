@@ -2406,7 +2406,7 @@ zh_CN:
       invalid_username: "没有使用该用户名的用户。"
       valid_username: "存在一个使用该用户名的用户。"
       invalid_group: "没有使用该名称的群组。"
-      invalid_topic: "没有与该 ID 匹配的话题。"
+      invalid_topic: "无效的话题。"
       invalid_integer_min_max: "值必须介于 %{min} 和 %{max}之间。"
       invalid_integer_min: "值必须为 %{min} 或更大。"
       invalid_integer_max: "值不能大于 %{max}。"
