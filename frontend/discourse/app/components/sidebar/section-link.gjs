@@ -171,9 +171,40 @@ export default class SectionLink extends Component {
               @prefixBadge={{@prefixBadge}}
             />
 
-            <span class="sidebar-section-link-content-text">
+            <span
+              class={{concatClass
+                "sidebar-section-link-content-text"
+                @contentCSSClass
+              }}
+            >
               {{@content}}
+              <@contentComponent />
             </span>
+
+            {{#if @badgeText}}
+              <span class="sidebar-section-link-content-badge">
+                {{@badgeText}}
+              </span>
+            {{/if}}
+
+            {{#if @suffixComponent}}
+              <@suffixComponent @suffixArgs={{@suffixArgs}} />
+            {{/if}}
+
+            {{#if @suffixValue}}
+              <span
+                class={{concatClass
+                  "sidebar-section-link-suffix"
+                  @suffixType
+                  @suffixCSSClass
+                }}
+              >
+                {{#if (eq @suffixType "icon")}}
+                  {{icon @suffixValue}}
+                {{/if}}
+              </span>
+            {{/if}}
+
           </a>
         {{else}}
           <LinkTo

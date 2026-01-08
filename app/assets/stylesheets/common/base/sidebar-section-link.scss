@@ -114,7 +114,7 @@
     .sidebar-section-link-content-text {
       @include ellipsis;
       min-width: 0;
-      flex: 0 1 auto;
+      flex: 1 1 auto;
 
       .user-status-message {
         vertical-align: -0.125em;
