@@ -67,10 +67,10 @@ module Jobs
     def find_llm_model_for_persona(persona_id)
       return nil if persona_id.blank?
 
-      persona_klass = AiPersona.find_by_id_from_cache(persona_id)
-      return nil if persona_klass.blank?
+      persona = AiPersona.find_by_id_from_cache(persona_id)
+      return nil if persona.blank?
 
-      DiscourseAi::Translation::BaseTranslator.preferred_llm_model(persona_klass)
+      DiscourseAi::Translation::BaseTranslator.preferred_llm_model(persona)
     end
   end
 end
