@@ -140,7 +140,7 @@ export default class UppyImageUploader extends Component {
   }
 
   @action
-  toggleLightbox() {
+  async toggleLightbox() {
     if (this.isVideoFile) {
       return;
     }
@@ -151,7 +151,7 @@ export default class UppyImageUploader extends Component {
       return;
     }
 
-    lightbox(lightboxImage);
+    await lightbox(lightboxImage);
     lightboxImage.click();
   }
 

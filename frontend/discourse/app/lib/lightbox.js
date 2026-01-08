@@ -17,13 +17,23 @@ export default async function lightbox(elem, additionalData = {}) {
   const siteSettings = helperContext().siteSettings;
   const caps = helperContext().capabilities;
 
+  const items = [
+    ...(elem.matches(".lightbox") && !elem.closest(".spoiler, .spoiled")
+      ? [elem]
+      : []),
+    ...elem.querySelectorAll(SELECTORS.DEFAULT_ITEM_SELECTOR),
+  ];
+
+  if (!items.length) {
+    return;
+  }
+
   const { default: PhotoSwipeLightbox } = await import("photoswipe/lightbox");
   const isTestEnv = isTesting() || isRailsTesting();
   const canDownload =
     !siteSettings.prevent_anons_from_downloading_files || !!currentUser;
   const canQuoteImage = !!currentUser;
   const rtl = isDocumentRTL();
-  const items = [...elem.querySelectorAll(SELECTORS.DEFAULT_ITEM_SELECTOR)];
 
   if (rtl) {
     items.reverse();
