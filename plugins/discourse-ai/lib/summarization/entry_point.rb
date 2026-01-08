@@ -20,7 +20,7 @@ module DiscourseAi
         end
 
         plugin.add_to_serializer(:topic_view, :has_cached_summary) do
-          AiSummary.exists?(target: object.topic, summary_type: AiSummary.summary_types[:complete])
+          scope.cached_summary_exists?(object.topic)
         end
 
         plugin.add_to_serializer(:web_hook_topic_view, :summarizable) do

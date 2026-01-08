@@ -32,8 +32,12 @@ acceptance("Topic - Summary", function (needs) {
 
     server.get("/discourse-ai/credits/status", () => {
       return helper.response({
-        topic_summaries: {
-          hard_limit_reached: false,
+        features: {
+          topic_summaries: {
+            credit_status: {
+              hard_limit_reached: false,
+            },
+          },
         },
       });
     });
@@ -141,8 +145,12 @@ acceptance("Topic - Summary - Anon", function (needs) {
 
     server.get("/discourse-ai/credits/status", () => {
       return helper.response({
-        topic_summaries: {
-          hard_limit_reached: false,
+        features: {
+          topic_summaries: {
+            credit_status: {
+              hard_limit_reached: false,
+            },
+          },
         },
       });
     });
